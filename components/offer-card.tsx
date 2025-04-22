@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { HeartFilledIcon } from "./icons";
+import ModalComponent from "./modal-component";
 
 export const OfferCard = () => {
   return (
-    <Link href="/offers/1">
+    <>
       <Card isFooterBlurred className="w-full h-[300px]">
         <div className="flex justify-center items-center w-full h-full">
           <Image
@@ -41,6 +42,7 @@ export const OfferCard = () => {
           </Button>
         </CardFooter>
       </Card>
-    </Link>
+      <ModalComponent />
+    </>
   );
 };

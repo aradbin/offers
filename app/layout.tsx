@@ -28,10 +28,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) {
   return (
     <html suppressHydrationWarning lang="en">
@@ -47,7 +45,6 @@ export default function RootLayout({
             <Navbar />
             <main className="container mx-auto max-w-7xl px-6 flex-grow flex flex-col gap-4 py-8 md:py-10">
               {children}
-              {modal}
             </main>
             {/* <footer className="w-full flex items-center justify-center py-3">
               <Link
