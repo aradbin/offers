@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import { Link } from "@heroui/link";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
@@ -29,10 +28,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({
   children,
-  modal
+  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode
+  modal: React.ReactNode;
 }) {
   return (
     <html suppressHydrationWarning lang="en">

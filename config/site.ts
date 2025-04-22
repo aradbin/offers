@@ -11,7 +11,7 @@ export const siteConfig = {
     {
       label: "All Offers",
       href: "/offers",
-    }
+    },
   ],
   navMenuItems: [
     {
@@ -21,7 +21,7 @@ export const siteConfig = {
     {
       label: "All Offers",
       href: "/offers",
-    }
+    },
   ],
   links: {
     github: "https://github.com/heroui-inc/heroui",

@@ -1,11 +1,5 @@
-import { Offer } from "@/components/offer";
+import { OfferDetails } from "@/components/offer-details";
 
 export default function Page() {
-  return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {Array.from({ length: 1 }).map((_, index) => (
-        <Offer key={index} />
-      ))}
-    </section>
-  );
+  return <OfferDetails />;
 }
