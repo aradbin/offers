@@ -2,17 +2,24 @@
 
 import { Button } from "@heroui/button";
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/modal";
-import { OfferCard } from "./offer-card";
 import { OfferDetails } from "./offer-details";
 import Link from "next/link";
+import { Card, CardFooter } from "@heroui/card";
+import OfferBanner from "./offer-banner";
 
-export const Offer = () => {
+export const Offer = ({ data }: any) => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   
   return (
     <>
       <div onClick={onOpen}>
-        <OfferCard />
+        <Card isFooterBlurred className="w-full h-[300px] cursor-pointer border-none" radius="lg">
+          <OfferBanner data={data} />
+          <CardFooter className="absolute bottom-0 px-4 py-4 justify-center items-center gap-4">
+            <h4>{data?.title}</h4>
+            {/* <FavoriteButton active id={1} /> */}
+          </CardFooter>
+        </Card>
       </div>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
