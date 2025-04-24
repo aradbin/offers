@@ -1,5 +1,5 @@
-import { OfferDetails } from "@/components/offer-details";
+import { OfferDetails } from "@/components/offer/offer-details";
 
 export default function Page() {
-  return <OfferDetails />;
+  return <OfferDetails />
 }
