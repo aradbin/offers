@@ -34,7 +34,7 @@ export default function OfferBanner({ data }: any) {
           ))}
         </div>
       </div>
-      <Image
+      {/* <Image
         as={NextImage}
         radius="none"
         alt={`${data?.partner} logo`}
@@ -42,7 +42,7 @@ export default function OfferBanner({ data }: any) {
         height="40"
         width="40"
         src={`/media/${data?.partner}.svg`}
-      />
+      /> */}
     </div>
   )
 }
