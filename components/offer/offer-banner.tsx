@@ -3,7 +3,7 @@ import NextImage from "next/image";
 
 export default function OfferBanner({ data }: any) {
   return (
-    <div className="flex justify-center items-center w-full h-full">
+    <div className="relative flex justify-center items-center w-full h-full bg-gradient-to-tr from-stone-500 to-slate-500">
       <div className="absolute flex justify-between top-0 p-4 w-full">
         <div className="flex flex-col gap-4">
           {data?.networks?.split(",").map((item: string, index: number) => (

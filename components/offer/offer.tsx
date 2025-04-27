@@ -27,13 +27,13 @@ export const Offer = ({ data }: any) => {
             <>
               <ModalHeader className="flex flex-col gap-1">Offer Details</ModalHeader>
               <ModalBody>
-                <OfferDetails />
+                <OfferDetails data={data} />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
+                <Button radius="full" color="danger" variant="light" onPress={onClose}>
                   Close
                 </Button>
-                <Button radius="full" color="primary" variant="flat" as={Link} href={`/offers/1`}>
+                <Button radius="full" color="primary" variant="flat" as={Link} href={`/offers/${data?.id}`}>
                   More Details
                 </Button>
               </ModalFooter>
