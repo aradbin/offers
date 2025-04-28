@@ -1,5 +1,4 @@
-import { Image } from "@heroui/image";
-import NextImage from "next/image";
+import Image from "next/image";
 
 export default function OfferBanner({ data }: any) {
   return (
@@ -9,8 +8,6 @@ export default function OfferBanner({ data }: any) {
           {data?.networks?.split(",").map((item: string, index: number) => (
             <Image
               key={index}
-              as={NextImage}
-              radius="none"
               alt={`${item} logo`}
               className="h-[40px]"
               height="40"
@@ -23,8 +20,6 @@ export default function OfferBanner({ data }: any) {
           {data?.banks?.split(",").map((item: string, index: number) => (
             <Image
               key={index}
-              as={NextImage}
-              radius="none"
               alt={`${item} logo`}
               className="h-[40px]"
               height="40"
@@ -34,15 +29,13 @@ export default function OfferBanner({ data }: any) {
           ))}
         </div>
       </div>
-      {/* <Image
-        as={NextImage}
-        radius="none"
+      <Image
         alt={`${data?.partner} logo`}
         className="object-cover w-full h-full"
         height="40"
         width="40"
         src={`/media/${data?.partner}.svg`}
-      /> */}
+      />
     </div>
   )
 }

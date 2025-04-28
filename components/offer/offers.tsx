@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 import { fetchOffers } from "@/app/offers/utils"
 import { Offer } from "./offer"
 import OfferSkeleton from "./offer-skeleton"
-import { Button } from "@heroui/button"
+import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
 import { createClient } from "@/utils/supabase/client"
 
@@ -43,7 +43,7 @@ export default function Offers({
       {(isFetchingNextPage) && Array.from({ length: siteConfig.perPage }).map((_, index) => <OfferSkeleton key={index} /> )}
       {hasNextPage && (
         <div className="col-span-full flex justify-center">
-          <Button onPress={() => fetchNextPage()}>Load More</Button>
+          <Button onClick={() => fetchNextPage()}>Load More</Button>
         </div>
       )}
     </>

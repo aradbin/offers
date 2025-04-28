@@ -1,65 +1,45 @@
-import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
-import clsx from "clsx";
-
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { Geist } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import Link from "next/link";
+import "./globals.css";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 import { Providers } from "./providers";
-
-import { siteConfig } from "@/config/site";
-import { fontPoppins } from "@/config/fonts";
-import { Navbar } from "@/components/navbar";
 import NextTopLoader from "nextjs-toploader";
 
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
+
+export const metadata = {
+  metadataBase: new URL(defaultUrl),
+  title: "Next.js and Supabase Starter Kit",
+  description: "The fastest way to build apps with Next.js and Supabase",
 };
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-};
+const geistSans = Geist({
+  display: "swap",
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html suppressHydrationWarning lang="en">
-      <head />
-      <body
-        className={clsx(
-          "min-h-screen bg-background font-poppins antialiased",
-          fontPoppins.variable,
-        )}
-      >
+    <html lang="en" className={geistSans.className} suppressHydrationWarning>
+      <body className="min-h-svh bg-background text-foreground antialiased">
         <NextTopLoader height={3} showSpinner={false} />
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
-            <Navbar />
-            <main className="container mx-auto max-w-7xl px-6 flex-grow flex flex-col gap-4 py-8 md:py-10">
-              {children}
-            </main>
-            {/* <footer className="w-full flex items-center justify-center py-3">
-              <Link
-                isExternal
-                className="flex items-center gap-1 text-current"
-                href="https://heroui.com?utm_source=next-app-template"
-                title="heroui.com homepage"
-              >
-                <span className="text-default-600">Powered by</span>
-                <p className="text-primary">HeroUI</p>
-              </Link>
-            </footer> */}
+        <Providers>
+          <main className="relative flex min-h-svh flex-col bg-background">
+          <div data-wrapper="" className="border-grid flex flex-1 flex-col">
+            <Header />
+            <main className="container mx-auto max-w-7xl px-6 flex-grow flex flex-col gap-4 py-8 md:py-10">{children}</main>
+            <Footer />
           </div>
+          </main>
         </Providers>
       </body>
     </html>

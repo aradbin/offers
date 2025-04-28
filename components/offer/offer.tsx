@@ -1,27 +1,22 @@
 'use client'
 
-import { Button } from "@heroui/button";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/modal";
+import { Button } from "@/components/ui/button";
 import { OfferDetails } from "./offer-details";
 import Link from "next/link";
-import { Card, CardFooter } from "@heroui/card";
+import { Card, CardFooter } from "@/components/ui/card";
 import OfferBanner from "./offer-banner";
 
-export const Offer = ({ data }: any) => {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  
+export const Offer = ({ data }: any) => {  
   return (
     <>
-      <div onClick={onOpen}>
-        <Card isFooterBlurred className="w-full h-[300px] cursor-pointer border-none" radius="lg">
-          <OfferBanner data={data} />
-          <CardFooter className="absolute bottom-0 px-4 py-4 justify-center items-center gap-4">
-            <h4>{data?.title}</h4>
-            {/* <FavoriteButton active id={1} /> */}
-          </CardFooter>
-        </Card>
-      </div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Card className="w-full h-[300px] cursor-pointer border-none">
+        <OfferBanner data={data} />
+        <CardFooter className="absolute bottom-0 px-4 py-4 justify-center items-center gap-4">
+          <h4>{data?.title}</h4>
+          {/* <FavoriteButton active id={1} /> */}
+        </CardFooter>
+      </Card>
+      {/* <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
@@ -30,17 +25,17 @@ export const Offer = ({ data }: any) => {
                 <OfferDetails data={data} />
               </ModalBody>
               <ModalFooter>
-                <Button radius="full" color="danger" variant="light" onPress={onClose}>
+                <Button>
                   Close
                 </Button>
-                <Button radius="full" color="primary" variant="flat" as={Link} href={`/offers/${data?.id}`}>
+                <Button>
                   More Details
                 </Button>
               </ModalFooter>
             </>
           )}
         </ModalContent>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

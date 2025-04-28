@@ -1,18 +1,11 @@
-import { Button } from "@heroui/button";
-import { HeartFilledIcon } from "@/components/icons";
+import { Button } from "@/components/ui/button";
+import { Heart } from "lucide-react";
 
 export default function FavoriteButton ({ active, id }: { active: boolean, id: number }) {
   return (
     <Button
-      isIconOnly
-      className="text-default-900/60 data-[hover]:bg-foreground/10 "
-      radius="full"
-      variant="light"
     >
-      <HeartFilledIcon
-        className={"[&>path]:stroke-transparent"}
-        fill={"currentColor"}
-      />
+      <Heart />
     </Button>
   )
 }
