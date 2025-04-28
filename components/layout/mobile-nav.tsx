@@ -13,7 +13,7 @@ export function MobileNav() {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <Drawer open={open} onOpenChange={() => {}}>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button
           variant="ghost"

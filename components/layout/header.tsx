@@ -1,4 +1,3 @@
-import { ThemeSwitcher } from "../theme-switcher";
 import { Button } from "@/components/ui/button";
 import { MainNav } from "@/components/layout/main-nav";
 import { MobileNav } from "@/components/layout/mobile-nav";
@@ -10,7 +9,7 @@ export default function Header() {
   return (
     <header className="border-grid sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container-wrapper">
-        <div className="container flex h-14 items-center gap-2 md:gap-4">
+        <div className="container flex max-w-7xl h-14 items-center gap-2 md:gap-4">
           <MainNav />
           <MobileNav />
           <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">

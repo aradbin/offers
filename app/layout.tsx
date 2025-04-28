@@ -1,7 +1,4 @@
-import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
-import Link from "next/link";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
@@ -33,12 +30,12 @@ export default function RootLayout({
       <body className="min-h-svh bg-background text-foreground antialiased">
         <NextTopLoader height={3} showSpinner={false} />
         <Providers>
-          <main className="relative flex min-h-svh flex-col bg-background">
-          <div data-wrapper="" className="border-grid flex flex-1 flex-col">
+          <main className="relative flex flex-col min-h-svh bg-background">
             <Header />
-            <main className="container mx-auto max-w-7xl px-6 flex-grow flex flex-col gap-4 py-8 md:py-10">{children}</main>
+            <div className="container mx-auto max-w-7xl px-6 flex-grow flex flex-col gap-4 py-8 md:py-10">
+              {children}
+            </div>
             <Footer />
-          </div>
           </main>
         </Providers>
       </body>
