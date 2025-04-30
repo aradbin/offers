@@ -29,3 +29,24 @@ export async function fetchOffers({
 
   return data;
 }
+
+export async function fetchOfferDetails({
+  supabase,
+  id,
+}: {
+  supabase: any,
+  id: any,
+} = {
+  supabase: null,
+  id: null,
+}) {
+  const { data, error } = await supabase
+    .from('offers')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) throw error;
+
+  return data;
+}

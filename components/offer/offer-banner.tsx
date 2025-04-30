@@ -1,4 +1,5 @@
 import ImageWithFallback from "@/components/ui/image-with-fallback";
+import getStorageUrl from "@/utils/supabase/storage";
 
 export default function OfferBanner({ data }: any) {
   return (
@@ -12,7 +13,7 @@ export default function OfferBanner({ data }: any) {
               className="h-[40px]"
               height="40"
               width="40"
-              src={`/media/${item}.svg`}
+              src={getStorageUrl('networks', item)}
               // placeholder="blur"
               loading="lazy"
               fallback={item}
@@ -27,7 +28,7 @@ export default function OfferBanner({ data }: any) {
               className="h-[40px]"
               height="40"
               width="40"
-              src={`/media/${item}.svg`}
+              src={getStorageUrl('banks', item)}
               // placeholder="blur"
               loading="lazy"
               fallback={item}
@@ -40,7 +41,7 @@ export default function OfferBanner({ data }: any) {
         className="w-3/5 h-full"
         height="40"
         width="40"
-        src={`/media/${data?.partner}.svg`}
+        src={getStorageUrl('partners', data?.partner)}
         // placeholder="blur"
         loading="lazy"
         fallback={data?.partner}

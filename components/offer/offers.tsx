@@ -42,15 +42,17 @@ export default function Offers({
   return (
     <>
       {data?.pages?.flat()?.map((item: any, index: number) => (
-        <Modal key={index} trigger={<OfferCard data={item} />} title="Offer Details" content={<div className="flex flex-col gap-4">
-          <OfferDetails data={item} />
-          <DialogFooter className="space-x-2">
-            <Link href={`/offers/${item.id}`}><Button className="w-full">More Details</Button></Link>
-            <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
-            </DialogClose>
-          </DialogFooter>
-        </div>} />
+        <Modal key={index} trigger={<OfferCard data={item} />} title="Offer Details">
+          <div className="flex flex-col gap-4">
+            <OfferDetails data={item} />
+            <DialogFooter className="space-x-2">
+              <Link href={`/offers/${item.id}`}><Button className="w-full">More Details</Button></Link>
+              <DialogClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DialogClose>
+            </DialogFooter>
+          </div>
+        </Modal>
       ))}
       {(isLoading || isFetchingNextPage) && Array.from({ length: siteConfig.perPage }).map((_, index) => <OfferSkeleton key={index} /> )}
       {hasNextPage && (

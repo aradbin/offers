@@ -6,7 +6,7 @@ import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, Dr
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useState } from "react"
 
-export function Modal({ trigger, title, description, content }: { trigger: React.ReactNode, title: string, description?: string, content: React.ReactNode }) {
+export function Modal({ trigger, title, description, children }: { trigger: React.ReactNode, title: string, description?: string, children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
@@ -16,14 +16,14 @@ export function Modal({ trigger, title, description, content }: { trigger: React
         <DialogTrigger asChild>
           <div>{trigger}</div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
             <DialogDescription>
               {description}
             </DialogDescription>
           </DialogHeader>
-          <div>{content}</div>
+          <div>{children}</div>
         </DialogContent>
       </Dialog>
     )
@@ -41,7 +41,7 @@ export function Modal({ trigger, title, description, content }: { trigger: React
             {description}
           </DrawerDescription>
         </DrawerHeader>
-        <div className="px-4">{content}</div>
+        <div className="px-4">{children}</div>
       </DrawerContent>
     </Drawer>
   )
