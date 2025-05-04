@@ -11,21 +11,18 @@ import { Modal } from "@/components/ui/modal";
 import OfferCard from "@/components/offer/offer-card";
 import { DialogClose, DialogFooter } from "@/components/ui/dialog"
 import Link from "next/link"
+import { OfferParamType } from "@/lib/types"
 
-export default function Offers({
-  params
-}: {
-  params?: any
-} = {
-  params: {}
-}) {
+export default function Offers({ params }: { params?: OfferParamType }) {
   const supabase = createClient();
+  console.log('params',params)
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, isFetched } = useInfiniteQuery({
     queryKey: ['offers', params],
     queryFn: ({ pageParam }) => fetchOffers({
       supabase,
-      page: pageParam
+      page: pageParam,
+      params
     }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
@@ -36,8 +33,6 @@ export default function Offers({
       return allPages.length;
     }
   })
-
-  console.log('query', data, isLoading, isFetchingNextPage)
 
   return (
     <>

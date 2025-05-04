@@ -1,4 +1,6 @@
 import { siteConfig } from "@/config/site";
+import { OfferParamType } from "@/lib/types";
+import { SupabaseClient } from "@supabase/supabase-js";
 
 export function getPaginationRange(page: number, limit: number) {
   const from = page * limit;
@@ -10,20 +12,31 @@ export function getPaginationRange(page: number, limit: number) {
 export async function fetchOffers({
   supabase,
   page,
+  params
 }: {
-  supabase: any,
+  supabase: SupabaseClient,
   page: number,
-} = {
-  supabase: null,
-  page: 0,
+  params?: OfferParamType
 }) {
-  const range = getPaginationRange(page, siteConfig.perPage);
+  const range = getPaginationRange(page || 0, siteConfig.perPage);
 
-  const { data, error } = await supabase
+  const query = supabase
     .from('offers')
     .select('*')
     .order('created_at', { ascending: false })
     .range(range[0], range[1]);
+
+  if(params?.hasOwnProperty('networks') && params?.networks.length > 0) {
+    query.in('networks', params?.networks);
+  }
+  if(params?.hasOwnProperty('banks') && params?.banks.length > 0) {
+    query.in('banks', params?.banks);
+  }
+  if(params?.hasOwnProperty('categories') && params?.categories.length > 0) {
+    query.in('categories', params?.categories);
+  }
+
+  const { data, error } = await query;
 
   if (error) throw error;
 
