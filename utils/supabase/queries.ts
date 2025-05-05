@@ -11,14 +11,12 @@ export function getPaginationRange(page: number, limit: number) {
 
 export async function fetchOffers({
   supabase,
-  page,
   params
 }: {
   supabase: SupabaseClient,
-  page: number,
-  params?: OfferParamType
+  params: OfferParamType
 }) {
-  const range = getPaginationRange(page || 0, siteConfig.perPage);
+  const range = getPaginationRange(params?.page, siteConfig.perPage);
 
   const query = supabase
     .from('offers')
@@ -26,13 +24,13 @@ export async function fetchOffers({
     .order('created_at', { ascending: false })
     .range(range[0], range[1]);
 
-  if(params?.hasOwnProperty('networks') && params?.networks.length > 0) {
+  if(params?.networks.length > 0) {
     query.in('networks', params?.networks);
   }
-  if(params?.hasOwnProperty('banks') && params?.banks.length > 0) {
+  if(params?.banks.length > 0) {
     query.in('banks', params?.banks);
   }
-  if(params?.hasOwnProperty('categories') && params?.categories.length > 0) {
+  if(params?.categories.length > 0) {
     query.in('categories', params?.categories);
   }
 

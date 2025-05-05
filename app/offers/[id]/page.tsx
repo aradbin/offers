@@ -1,5 +1,5 @@
 import { OfferDetails } from "@/components/offer/offer-details";
-import { fetchOfferDetails } from "../utils";
+import { fetchOfferDetails } from "@/utils/supabase/queries";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function Page({ params }: any) {

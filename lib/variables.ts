@@ -13,7 +13,7 @@ export const networks = {
   },
 }
 
-export const Banks = {
+export const banks = {
   ebl: {
     name: 'Eastern Bank Limited',
     icon: 'ebl.svg'

@@ -1,7 +1,6 @@
 'use client'
 
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { fetchOffers } from "@/app/offers/utils"
 import OfferSkeleton from "@/components/offer/offer-skeleton"
 import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
@@ -12,17 +11,19 @@ import OfferCard from "@/components/offer/offer-card";
 import { DialogClose, DialogFooter } from "@/components/ui/dialog"
 import Link from "next/link"
 import { OfferParamType } from "@/lib/types"
+import { fetchOffers } from "@/utils/supabase/queries"
 
-export default function Offers({ params }: { params?: OfferParamType }) {
+export default function Offers({ params }: { params: OfferParamType }) {
   const supabase = createClient();
-  console.log('params',params)
 
-  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, isFetched } = useInfiniteQuery({
+  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ['offers', params],
     queryFn: ({ pageParam }) => fetchOffers({
       supabase,
-      page: pageParam,
-      params
+      params: {
+        ...params,
+        page: pageParam
+      }
     }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
