@@ -14,7 +14,23 @@ export default function OfferFilter({ params }: { params: OfferParamType }) {
     type: keyof OfferParamType,
     value: string
   ) => {
-    
+    const newParams = { ...params };
+  
+    if (checked) {
+      if (!newParams[type].includes(value)) {
+        newParams[type].push(value);
+      }
+    } else {
+      newParams[type] = newParams[type].filter((item) => item !== value);
+    }
+  
+    const searchParams = new URLSearchParams();
+  
+    Object.entries(newParams).forEach(([key, values]) => {
+      values.forEach((val) => searchParams.append(key, val));
+    });
+  
+    router.push(`?${searchParams.toString()}`);
   };
 
   return (
@@ -23,8 +39,8 @@ export default function OfferFilter({ params }: { params: OfferParamType }) {
         <p>Networks</p>
         {Object.entries(networks)?.map(([key, value]) => (
           <div className="flex gap-2" key={key}>
-            <Checkbox id={`network-${key}`} checked={params?.networks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "networks", key)} />
-            <Label htmlFor={`network-${key}`}>{value.name}</Label>
+            <Checkbox id={`networks-${key}`} checked={params?.networks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "networks", key)} />
+            <Label htmlFor={`networks-${key}`}>{value.name}</Label>
           </div>
         ))}
       </div>
@@ -32,8 +48,8 @@ export default function OfferFilter({ params }: { params: OfferParamType }) {
         <p>Banks</p>
         {Object.entries(banks)?.map(([key, value]) => (
           <div className="flex gap-2" key={key}>
-            <Checkbox id={`network-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
-            <Label htmlFor={`network-${key}`}>{value.name}</Label>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
           </div>
         ))}
       </div>

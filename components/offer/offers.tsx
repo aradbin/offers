@@ -22,7 +22,7 @@ export default function Offers({ params }: { params: OfferParamType }) {
       supabase,
       params: {
         ...params,
-        page: pageParam
+        page: [pageParam.toString()]
       }
     }),
     initialPageParam: 0,

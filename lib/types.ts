@@ -2,5 +2,5 @@ export type OfferParamType = {
   networks: string[],
   banks: string[],
   categories: string[],
-  page: number
+  page: string[]
 }
