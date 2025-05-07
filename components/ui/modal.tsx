@@ -1,12 +1,12 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useState } from "react"
 
-export function Modal({ trigger, title, description, children }: { trigger: React.ReactNode, title: string, description?: string, children: React.ReactNode }) {
+export function Modal({ trigger, title, description, footer, children }: { trigger: React.ReactNode, title: string, description?: string, footer?: React.ReactNode, children: React.ReactNode }) {
   const [open, setOpen] = useState(false)
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
@@ -23,7 +23,12 @@ export function Modal({ trigger, title, description, children }: { trigger: Reac
               {description}
             </DialogDescription>
           </DialogHeader>
-          <div>{children}</div>
+          <div className="overflow-y-auto" style={{ maxHeight: '60vh' }}>
+            {children}
+          </div>
+          <DialogFooter>
+            {footer}
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     )
@@ -41,7 +46,12 @@ export function Modal({ trigger, title, description, children }: { trigger: Reac
             {description}
           </DrawerDescription>
         </DrawerHeader>
-        <div className="px-4">{children}</div>
+        <div className="px-4 overflow-y-auto" style={{ maxHeight: '60vh' }}>
+          {children}
+        </div>
+        <DrawerFooter>
+          {footer}
+        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   )

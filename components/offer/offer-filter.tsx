@@ -5,8 +5,11 @@ import { Label } from "@/components/ui/label";
 import { OfferParamType } from "@/lib/types";
 import { banks, networks } from "@/lib/variables";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Filter } from "lucide-react";
+import { Modal } from "../ui/modal";
 
-export default function OfferFilter({ params }: { params: OfferParamType }) {
+function FilterContent({ params }: { params: OfferParamType }) {
   const router = useRouter()
 
   const handleCheck = (
@@ -53,6 +56,84 @@ export default function OfferFilter({ params }: { params: OfferParamType }) {
           </div>
         ))}
       </div>
+      <div className="flex flex-col gap-2">
+        <p>Banks</p>
+        {Object.entries(banks)?.map(([key, value]) => (
+          <div className="flex gap-2" key={key}>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2">
+        <p>Banks</p>
+        {Object.entries(banks)?.map(([key, value]) => (
+          <div className="flex gap-2" key={key}>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2">
+        <p>Banks</p>
+        {Object.entries(banks)?.map(([key, value]) => (
+          <div className="flex gap-2" key={key}>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2">
+        <p>Banks</p>
+        {Object.entries(banks)?.map(([key, value]) => (
+          <div className="flex gap-2" key={key}>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2">
+        <p>Banks</p>
+        {Object.entries(banks)?.map(([key, value]) => (
+          <div className="flex gap-2" key={key}>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2">
+        <p>Banks</p>
+        {Object.entries(banks)?.map(([key, value]) => (
+          <div className="flex gap-2" key={key}>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
+          </div>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2">
+        <p>Banks</p>
+        {Object.entries(banks)?.map(([key, value]) => (
+          <div className="flex gap-2" key={key}>
+            <Checkbox id={`banks-${key}`} checked={params?.banks?.includes(key)} onCheckedChange={(checked: boolean) => handleCheck(checked, "banks", key)} />
+            <Label htmlFor={`banks-${key}`}>{value.name}</Label>
+          </div>
+        ))}
+      </div>
     </div>
+  )
+}
+
+export default function OfferFilter({ params }: { params: OfferParamType }) {
+  return (
+    <>
+      <div className="flex md:hidden">
+        <Modal trigger={<Button variant="outline"><Filter className="size-4 mr-2" /> Filter</Button>} title="Filter">
+          <FilterContent params={params} />
+        </Modal>
+      </div>
+      <div className="hidden md:flex">
+        <FilterContent params={params} />
+      </div>
+    </>
   )
 }

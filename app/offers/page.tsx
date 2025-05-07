@@ -14,11 +14,13 @@ export default async function Page({ searchParams }: any) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="flex flex-col md:flex-row gap-8">
       <OfferFilter params={offerParams} />
-      <div>
+      <div className="w-full md:w-4/5">
         <OfferFilterParams params={offerParams} />
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <Offers params={offerParams} />
+          <Offers params={offerParams} />
           <Offers params={offerParams} />
         </section>
       </div>
