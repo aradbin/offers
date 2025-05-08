@@ -1,8 +1,7 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+import { Drawer, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useState } from "react"
 
@@ -19,16 +18,14 @@ export function Modal({ trigger, title, description, footer, children }: { trigg
         <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
-            <DialogDescription>
-              {description}
-            </DialogDescription>
+            {description && <DialogDescription>{description}</DialogDescription>}
           </DialogHeader>
           <div className="overflow-y-auto" style={{ maxHeight: '60vh' }}>
             {children}
           </div>
-          <DialogFooter>
+          {footer && <DialogFooter>
             {footer}
-          </DialogFooter>
+          </DialogFooter>}
         </DialogContent>
       </Dialog>
     )
@@ -42,16 +39,14 @@ export function Modal({ trigger, title, description, footer, children }: { trigg
       <DrawerContent>
         <DrawerHeader className="text-left">
           <DrawerTitle>{title}</DrawerTitle>
-          <DrawerDescription>
-            {description}
-          </DrawerDescription>
+          {description && <DrawerDescription>{description}</DrawerDescription>}
         </DrawerHeader>
         <div className="px-4 overflow-y-auto" style={{ maxHeight: '60vh' }}>
           {children}
         </div>
-        <DrawerFooter>
+        {footer && <DrawerFooter>
           {footer}
-        </DrawerFooter>
+        </DrawerFooter>}
       </DrawerContent>
     </Drawer>
   )

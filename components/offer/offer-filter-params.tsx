@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function OfferFilterParams({ params }: { params: OfferParamType }) {
   const router = useRouter()
+  
   return (
     <div className="flex flex-wrap gap-2">
       {Object.keys(params)?.filter((key) => params[key as keyof OfferParamType].length > 0 && key !== 'page').map((key) => (
