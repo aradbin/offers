@@ -10,6 +10,7 @@ export default async function Page({ searchParams }: any) {
     networks: toArray(params?.networks),
     banks: toArray(params?.banks),
     categories: toArray(params?.categories),
+    partners: toArray(params?.partners),
     page: [params?.page || 0]
   }
 
@@ -19,8 +20,6 @@ export default async function Page({ searchParams }: any) {
       <div className="flex flex-col gap-4 w-full md:w-4/5">
         <OfferFilterParams params={offerParams} />
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          <Offers params={offerParams} />
-          <Offers params={offerParams} />
           <Offers params={offerParams} />
         </section>
       </div>

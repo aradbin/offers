@@ -16,7 +16,7 @@ import { fetchOffers } from "@/utils/supabase/queries"
 export default function Offers({ params }: { params: OfferParamType }) {
   const supabase = createClient();
 
-  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
+  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } = useInfiniteQuery({
     queryKey: ['offers', params],
     queryFn: ({ pageParam }) => fetchOffers({
       supabase,
