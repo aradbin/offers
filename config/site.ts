@@ -9,6 +9,28 @@ export const siteConfig = {
     github: "https://github.com/shadcn-ui/ui",
   },
   perPage: 12,
+  nav: [
+    {
+      title: "All",
+      href: "/offers",
+    },
+    {
+      title: "Networks",
+      href: "/networks",
+    },
+    {
+      title: "Banks",
+      href: "/banks",
+    },
+    {
+      title: "Categories",
+      href: "/categories",
+    },
+    {
+      title: "Partners",
+      href: "/partners",
+    },    
+  ]
 }
 
 export type SiteConfig = typeof siteConfig
