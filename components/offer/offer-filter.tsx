@@ -4,41 +4,47 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { OfferParamType } from "@/lib/types";
 import { banks, networks } from "@/lib/variables";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Filter, X } from "lucide-react";
+import { Filter } from "lucide-react";
 import { Modal } from "@/components/ui/modal";
 import { DialogClose } from "@/components/ui/dialog";
+import { useTransition } from "react";
 
 function FilterContent({ params }: { params: OfferParamType }) {
   const router = useRouter()
+  const pathname = usePathname()
+  const [isPending, startTransition] = useTransition()
 
   const handleCheck = (
     checked: boolean,
     type: keyof OfferParamType,
     value: string
   ) => {
-    const newParams = { ...params };
+    startTransition(() => {
+      const newParams = { ...params };
   
-    if (checked) {
-      if (!newParams[type].includes(value)) {
-        newParams[type].push(value);
+      if (checked) {
+        if (!newParams[type].includes(value)) {
+          newParams[type].push(value);
+        }
+      } else {
+        newParams[type] = newParams[type].filter((item) => item !== value);
       }
-    } else {
-      newParams[type] = newParams[type].filter((item) => item !== value);
-    }
-  
-    const searchParams = new URLSearchParams();
-  
-    Object.entries(newParams).forEach(([key, values]) => {
-      values.forEach((val) => searchParams.append(key, val));
-    });
-  
-    router.push(`?${searchParams.toString()}`);
+    
+      const searchParams = new URLSearchParams();
+    
+      Object.entries(newParams).forEach(([key, values]) => {
+        values.forEach((val) => searchParams.append(key, val));
+      });
+    
+      router.push(`${pathname}?${searchParams.toString()}`, { scroll: false });
+    })
   };
 
   return (
     <div className="flex flex-col gap-4">
+      {isPending && <p>Loading...</p>}
       <div className="flex flex-col gap-2">
         <p>Networks</p>
         {Object.entries(networks)?.map(([key, value]) => (

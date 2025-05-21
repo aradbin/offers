@@ -13,7 +13,7 @@ export default function OfferFilterParams({ params }: { params: OfferParamType }
   
   return (
     <div className="flex flex-wrap gap-2">
-      {Object.keys(params)?.filter((key) => params[key as keyof OfferParamType].length > 0 && key !== 'page').map((key) => (
+      {Object.keys(params)?.filter((key) => params[key as keyof OfferParamType].length > 0).map((key) => (
         <Button variant="outline" size="sm" className="border-dashed" key={key}>
           {startCase(key)}
           <Separator orientation="vertical" className="mx-2 h-4" />
@@ -30,7 +30,7 @@ export default function OfferFilterParams({ params }: { params: OfferParamType }
           </div>
         </Button>
       ))}
-      {Object.keys(params)?.filter((key) => params[key as keyof OfferParamType].length > 0 && key !== 'page')?.length > 0 && <Button variant="outline" size="sm" className="border-dashed" onClick={() => router.push('?')}>
+      {Object.keys(params)?.filter((key) => params[key as keyof OfferParamType].length > 0)?.length > 0 && <Button variant="outline" size="sm" className="border-dashed" onClick={() => router.push('?')}>
         Reset
         <X className="size-4 ml-2" />
       </Button>}

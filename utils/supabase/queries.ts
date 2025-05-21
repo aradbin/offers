@@ -11,12 +11,14 @@ export function getPaginationRange(page: number, limit: number) {
 
 export async function fetchOffers({
   supabase,
-  params
+  params,
+  page
 }: {
   supabase: SupabaseClient,
-  params: OfferParamType
+  params: OfferParamType,
+  page: number
 }) {
-  const range = getPaginationRange(parseInt(params.page[0]), siteConfig.perPage);
+  const range = getPaginationRange(page, siteConfig.perPage);
 
   const query = supabase
     .from('offers')

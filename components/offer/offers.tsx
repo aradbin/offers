@@ -13,17 +13,15 @@ import Link from "next/link"
 import { OfferParamType } from "@/lib/types"
 import { fetchOffers } from "@/utils/supabase/queries"
 
-export default function Offers({ params, initialData }: { params: OfferParamType, initialData?: any[] }) {
+export default function Offers({ params }: { params: OfferParamType }) {
   const supabase = createClient();
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ['offers', params],
     queryFn: ({ pageParam }) => fetchOffers({
       supabase,
-      params: {
-        ...params,
-        page: [pageParam.toString()]
-      }
+      params,
+      page: pageParam
     }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
@@ -32,11 +30,7 @@ export default function Offers({ params, initialData }: { params: OfferParamType
       }
 
       return allPages.length;
-    },
-    initialData: initialData ? {
-      pages: [initialData || []],
-      pageParams: [0]
-    } : undefined
+    }
   })
 
   return (

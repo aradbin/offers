@@ -8,8 +8,7 @@ export default async function Page({ params }: any) {
     networks: type === 'networks' ? [name] : [],
     banks: type === 'banks' ? [name] : [],
     categories: type === 'categories' ? [name] : [],
-    partners: type === 'partners' ? [name] : [],
-    page: [params?.page || 0]
+    partners: type === 'partners' ? [name] : []
   }
 
   const supabase = await createClient()
