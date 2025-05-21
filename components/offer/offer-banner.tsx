@@ -1,5 +1,4 @@
 import ImageWithFallback from "@/components/ui/image-with-fallback";
-import getStorageUrl from "@/utils/supabase/storage";
 
 export default function OfferBanner({ data }: any) {
   return (

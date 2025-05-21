@@ -8,15 +8,15 @@ import { createClient } from "@/utils/supabase/client"
 import { OfferDetails } from "@/components/offer/offer-details";
 import { Modal } from "@/components/ui/modal";
 import OfferCard from "@/components/offer/offer-card";
-import { DialogClose, DialogFooter } from "@/components/ui/dialog"
+import { DialogClose } from "@/components/ui/dialog"
 import Link from "next/link"
 import { OfferParamType } from "@/lib/types"
 import { fetchOffers } from "@/utils/supabase/queries"
 
-export default function Offers({ params }: { params: OfferParamType }) {
+export default function Offers({ params, initialData }: { params: OfferParamType, initialData?: any[] }) {
   const supabase = createClient();
 
-  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, error } = useInfiniteQuery({
+  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ['offers', params],
     queryFn: ({ pageParam }) => fetchOffers({
       supabase,
@@ -32,7 +32,11 @@ export default function Offers({ params }: { params: OfferParamType }) {
       }
 
       return allPages.length;
-    }
+    },
+    initialData: initialData ? {
+      pages: [initialData || []],
+      pageParams: [0]
+    } : undefined
   })
 
   return (
